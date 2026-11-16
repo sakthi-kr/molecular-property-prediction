@@ -1,0 +1,38 @@
+{
+  "protocol_version": 1,
+  "dataset": "MoleculeNet Lipophilicity \u2014 experimental logD at pH 7.4",
+  "primary_split": "scaffold_held_out",
+  "secondary_split": "random_grouped",
+  "primary_model": "ridge_morgan",
+  "comparison_models": [
+    "dummy_mean",
+    "ridge_descriptors",
+    "random_forest_descriptors"
+  ],
+  "ridge_alpha": 10.0,
+  "cv_selected_alpha_by_split": {
+    "scaffold_held_out": 10.0,
+    "random_grouped": 10.0
+  },
+  "interval_model": "calibration_ridge_morgan",
+  "nominal_interval_coverage": 0.9,
+  "similarity_bins": [
+    0,
+    0.3,
+    0.5,
+    0.7,
+    0.85,
+    1
+  ],
+  "bootstrap_repetitions": 1000,
+  "bootstrap_seed": 2026,
+  "expected_test_rows_per_split": 420,
+  "expected_sklearn_version": "1.7.2",
+  "preparation_report_sha256": "29f0af2c126c0e13658ddb85dd409f466f5b15c951c4f663270a15d864e378b3",
+  "training_report_sha256": "8814f9efedca06a813c8812d504c7dc99e6de16aefa5818bfef28d12a6c4e575",
+  "analysis_report_sha256": "dc6f714460a6a720ec56709f658d93d5e99ef5894a42d5fae516e2a734620f39",
+  "prepared_features_sha256": "64c570e5b8e3d952ef06f947a7422a4b38a77a79d7373af74f3dfbd4f3ace85a",
+  "model_config_sha256": "0590a21bdcd92beba7cde1ac416a545613ebc6d41b047dda623ff77360fb0e4c",
+  "analysis_config_sha256": "8d1df133f353650ab8f0ccdcf440ac7b887de43d154d1a8e5f65565a88b66c3d",
+  "test_access_policy": "single_final_evaluation_no_retraining_or_selection"
+}

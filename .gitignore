@@ -1,0 +1,39 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+.env
+*.log
+build/
+dist/
+# Source data may have separate reuse terms; do not commit it.
+data/raw/*
+!data/raw/.gitkeep
+# Reports/models are reproducible local outputs.
+data/reports/*
+!data/reports/.gitkeep
+models/
+outputs/
+
+# Molecular features and locked split assignments are local artifacts.
+data/processed/*
+!data/processed/.gitkeep
+
+# Trained-model artifacts and molecular data must never be committed.
+*.joblib
+*.pkl
+*.pickle
+*.npz
+*.parquet
+.mypy_cache/
+.pytest_cache/
+.streamlit/secrets.toml
+
+# Prevent accidental publication of prediction/source CSV exports.
+*.csv
+!examples/sample_smiles.csv

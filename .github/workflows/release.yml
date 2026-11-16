@@ -1,0 +1,38 @@
+name: Publish portfolio snapshot
+
+on:
+  workflow_run:
+    workflows: ["Molecular property prediction tests"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success'
+          && github.event.workflow_run.head_branch == 'main'
+          && github.event.workflow_run.event == 'push'
+          && github.event.workflow_run.head_repository.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Publish v0.7.0 from tested commit once
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TESTED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          if gh release view v0.7.0 >/dev/null 2>&1; then
+            echo "Release already exists; no additional action"
+            exit 0
+          fi
+          gh release create v0.7.0 \
+            --target "$TESTED_SHA" \
+            --title 'v0.7.0 - Molecular Property Prediction' \
+            --notes-file RELEASE_NOTES.md

@@ -1,0 +1,9 @@
+{
+  "random_seed": 2026,
+  "split_ratios": {"train": 0.8, "validation": 0.1, "test": 0.1},
+  "morgan_radius": 2,
+  "morgan_bits": 2048,
+  "morgan_include_chirality": true,
+  "scaffold_include_chirality": false,
+  "descriptor_set": "rdkit2d-v1"
+}

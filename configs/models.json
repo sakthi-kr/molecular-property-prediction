@@ -1,0 +1,15 @@
+{
+  "seed": 2026,
+  "representations": {
+    "ridge_descriptors": "descriptors",
+    "ridge_morgan": "morgan",
+    "random_forest_descriptors": "descriptors",
+    "dummy_mean": "descriptors"
+  },
+  "ridge_alpha_descriptors": 10.0,
+  "ridge_alpha_morgan": 10.0,
+  "forest_n_estimators": 150,
+  "forest_min_samples_leaf": 2,
+  "forest_max_features": 0.75,
+  "forest_n_jobs": 2
+}

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "molecular-property-prediction"
+version = "0.7.0"
+description = "Reproducible molecular lipophilicity modelling with frozen evaluation and local inference"
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+authors = [{name = "Sakthikumaran Ravichandran"}]
+license = "MIT"
+dependencies = [
+  "rdkit>=2025.3,<2027",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+ml = ["numpy>=1.26,<3", "pandas>=2.0,<3", "scikit-learn>=1.4,<2", "matplotlib>=3.8,<4", "joblib>=1.3,<2"]
+app = ["streamlit>=1.53,<2", "pillow>=10,<13"]
+
+[project.scripts]
+molprop-download = "molprop.download:main"
+molprop-audit = "molprop.audit:main"
+molprop-prepare = "molprop.prepare:main"
+molprop-train = "molprop.train:main"
+molprop-analyze = "molprop.analyze:main"
+molprop-final-evaluation = "molprop.final_evaluation:main"
+molprop-predict = "molprop.predict:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
