@@ -1,39 +1,40 @@
-# Publishing this project to GitHub
+# GitHub repository and maintenance
 
-This document describes how to publish a **new, empty, public** repository named `molecular-property-prediction` under GitHub account `sakthi-kr`. Do not reuse an existing unrelated project repository.
+The source is published at [sakthi-kr/molecular-property-prediction](https://github.com/sakthi-kr/molecular-property-prediction). Its first portfolio snapshot, [v0.7.0](https://github.com/sakthi-kr/molecular-property-prediction/releases/tag/v0.7.0), was created from a commit that passed GitHub Actions on Python 3.10 and 3.12.
 
-1. In GitHub, choose **New repository**, set the owner to `sakthi-kr` and the name to **molecular-property-prediction**; choose **Public**. Leave **Add README**, **Add .gitignore** and **Choose a license** unchecked, because they are already present in the source.
-2. Open Git Bash in your existing `C:\Users\admin\Downloads\molecular-property-prediction` working folder after installing the final source update.
-3. Review what is staged before the initial commit:
+## What is and is not published
+
+The repository tracks source code, fixed experiment configurations, tests, documentation, and a small example SMILES file. The original MoleculeNet dataset, derived feature arrays, split assignments, model binaries, local reports, and molecular prediction outputs remain excluded. The MIT license applies to repository source code, **not** automatically to the referenced dataset.
+
+The clean clone can run the offline test suite. The Streamlit predictor **cannot** make real predictions until the local, version-compatible trained model artifacts and their verification metadata are available. See [reproducibility](reproducibility.md) and [prediction app](prediction_app.md).
+
+## Updating the existing repository
+
+From the working Git Bash project folder:
 
 ```bash
-cd /c/Users/admin/Downloads/molecular-property-prediction
-git init -b main
+git status --short
+python scripts/check_repository.py
+python -m pytest -q -rs
 git add .
 python scripts/check_repository.py
-git status --short
+git diff --cached --stat
 ```
 
-You should see source files, docs, tests and configuration. **Never commit** `data/raw/Lipophilicity.csv`, `.venv`, `data/processed`, `outputs/`, `.joblib`, or real compound-level predictions. `git status --short` should show none of these because `.gitignore` excludes them.
+Review the staged files before committing. Do not add downloaded molecular records, model `.joblib` files, processed arrays, held-out compound predictions, personal secrets, or large generated outputs.
 
-4. Complete the initial push:
+For nontrivial changes, create a feature branch, open a pull request and confirm both CI jobs pass before merging. Preserve the frozen experimental contracts and the already evaluated test scores; any new experiment requires a separate, preregistered evaluation plan rather than modifying the existing historical report.
 
-```bash
-git commit -m "Publish reproducible molecular lipophilicity project"
-git remote add origin https://github.com/sakthi-kr/molecular-property-prediction.git
-git push -u origin main
-```
+## Repository metadata
 
-If the folder is already a Git repository, do not run `git init` or re-add an existing `origin` remote; inspect `git remote -v` and `git status` first. Authenticate with GitHub using Git Credential Manager or your existing Git setup. GitHub account passwords are not accepted for Git over HTTPS.
+- Description: `Molecular lipophilicity prediction with RDKit, scaffold-aware evaluation, frozen ML models and a local Streamlit app.`
+- Topics: `python`, `machine-learning`, `rdkit`, `chemoinformatics`, `molecular-property-prediction`, `drug-discovery`, `scikit-learn`, `streamlit`, `reproducible-research`
+- Homepage: leave empty unless a public, tested application is actually hosted.
 
-5. Open **Actions** and check that the **Molecular property prediction tests** workflow passes for Python 3.10 and 3.12. The release workflow is configured to create a one-time `v0.7.0` GitHub Release **after** a successful `main` push CI run. If GitHub Actions is disabled, blocked by repo policy or the workflow has insufficient permissions, do not claim the release exists: inspect the job logs and fix the cause first.
+These settings are configured through the **About** gear icon on GitHub. Profile README inclusion and pin placement are separate editorial decisions.
 
-## Repository About metadata
+## CI, release and repository controls
 
-Description: `Molecular lipophilicity prediction with RDKit, scaffold-aware evaluation, frozen ML models and a local Streamlit app.`
+The [Molecular property prediction tests](../.github/workflows/tests.yml) workflow runs unit tests, dependency checks and tracked-file hygiene on Python 3.10 and 3.12. The [release workflow](../.github/workflows/release.yml) published `v0.7.0` only once after the main-branch CI run succeeded.
 
-Topics: `python`, `machine-learning`, `rdkit`, `chemoinformatics`, `molecular-property-prediction`, `drug-discovery`, `scikit-learn`, `streamlit`, `reproducible-research`
-
-No homepage URL is needed until a real hosted demo exists. The README already includes a CI badge which will show status once GitHub Actions has run.
-
-After publication, verify the new tag at `https://github.com/sakthi-kr/molecular-property-prediction/releases/tag/v0.7.0`. Consider GitHub branch protection and pin ordering separately so the profile remains a curated set of portfolio projects.
+For ongoing maintenance, consider **Settings → Rules → Rulesets** or the branch-protection settings available to your account. Require passing CI and pull requests for `main` once those requirements fit your single-maintainer workflow; verify the rules are actually enforced rather than merely configured. Do not rewrite or retag the published `v0.7.0` release for subsequent documentation changes.
