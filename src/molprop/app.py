@@ -152,7 +152,7 @@ def main() -> None:
         bundle = _load_models(str(PROJECT), current_artifacts)
     except (PredictionError, OSError, ValueError) as exc:
         st.error(f"Could not verify your frozen local model files: {exc}")
-        st.caption("Keep your existing models and reports in their original folders. See docs/inference_app.md.")
+        st.caption("Keep your existing models and reports in their original folders. See docs/prediction_app.md.")
         st.stop()
 
     with st.sidebar:

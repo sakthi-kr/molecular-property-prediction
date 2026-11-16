@@ -4,7 +4,7 @@
 
 Reproducible scientific machine learning for predicting experimental molecular lipophilicity from chemical structure. The target is octanol/water distribution coefficient **logD at pH 7.4** — not logP, toxicity, target binding or drug efficacy.
 
-**Status:** Source implementation and local scientific evaluation complete. Version `0.7.0` is prepared as a public portfolio snapshot. The prediction interface uses locally generated, checksum-verified artifacts; no pretrained models or hosted API are supplied.
+**Status:** Scientific evaluation complete; [v0.7.0](https://github.com/sakthi-kr/molecular-property-prediction/releases/tag/v0.7.0) published with passing Python 3.10 and 3.12 CI. The prediction interface requires locally generated, checksum-verified artifacts; no pretrained models or hosted API are supplied.
 
 ## Results at a glance
 
@@ -108,7 +108,7 @@ This repository includes *only code and metadata*. The raw 4,200-row CSV, molecu
 
 - [Experimental results and limitations](docs/results.md)
 - [Reproducibility and local model artifacts](docs/reproducibility.md)
-- [GitHub publication instructions](docs/github_setup.md)
+- [Repository maintenance and publication details](docs/github_setup.md)
 - [Changelog](CHANGELOG.md)
 - [Experiment protocol](docs/experiment_protocol.md)
 - [Molecular features and leakage-audited splits](docs/preparation.md)
@@ -124,4 +124,4 @@ The project does not predict safety, clinical effectiveness or suitability for h
 
 ## License and release
 
-The first public portfolio snapshot is `v0.7.0` (after the GitHub release workflow succeeds). The source **code** is MIT-licensed (see [LICENSE](LICENSE)); this does not extend any license to the downloaded molecular data.
+The first public portfolio snapshot, [v0.7.0](https://github.com/sakthi-kr/molecular-property-prediction/releases/tag/v0.7.0), was published after passing CI. The source **code** is MIT-licensed (see [LICENSE](LICENSE)); this does not extend any license to the downloaded molecular data.
